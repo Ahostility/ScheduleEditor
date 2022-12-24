@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>Главная страница</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&family=Poppins:wght@600&display=swap" rel="stylesheet">
+    {% load static %}
+    <link  rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <p class="title">Редактирование расписания</p>
+            <form class="form__edit">
+                <div class="form__wrapper">
+                <div class="form__section">
+                    <label for="time-lesson"><img src="{% static 'images/tag.svg' %}">Время пары</label>
+                    <input type="text" id="time-lesson" placeholder="Текст">
+                </div>
+                <div class="form__section">
+                    <label for="type-lesson"><img src="{% static 'images/tag.svg' %}">Тип пары</label>
+                    <input type="text" id="type-lesson" placeholder="Текст">
+                </div>
+                <div class="form__section">
+                    <label for="object"><img src="{% static 'images/tag.svg' %}">Дисциплина</label>
+                    <input type="text" id="object" placeholder="Текст">
+                </div>
+                <div class="form__section">
+                    <label for="group"><img src="{% static 'images/tag.svg' %}">Имя группы</label>
+                    <input type="text" id="group" placeholder="Текст">
+                </div>
+                <div class="form__section">
+                    <label for="scientific-degree-initiator"><img src="{% static 'images/tag.svg' %}">Научная степень инициатора</label>
+                    <input type="text" id="scientific-degree" placeholder="Текст">
+                </div>
+                <div class="form__section">
+                    <label for="surname-initiator"><img src="{% static 'images/tag.svg' %}">Фамилия инициатора замены</label>
+                    <input type="text" id="surname-initiator" placeholder="Текст">
+                </div>
+                <div class="form__section">
+                    <label for="name-initiator"><img src="{% static 'images/tag.svg' %}">Имя инициатора замены</label>
+                    <input type="text" id="name-initiator" placeholder="Текст">
+                </div>
+                <div class="form__section">
+                    <label for="patronymic-initiator"><img src="{% static 'images/tag.svg' %}">Отчество инициатора замены</label>
+                    <input type="text" id="patronymic-initiator" placeholder="Текст">
+                </div>
+                <div class="form__section">
+                    <label for="scientific-degree-replacement"><img src="{% static 'images/tag.svg' %}">Научная степень замещающего преподавателя</label>
+                    <input type="text" id="scientific-degree-replacement" placeholder="Текст">
+                </div>
+                <div class="form__section">
+                    <label for="surname-replacement"><img src="{% static 'images/tag.svg' %}">Фамилия замещающего преподавателя</label>
+                    <input type="text" id="surname-replacement" placeholder="Текст">
+                </div>
+                <div class="form__section">
+                    <label for="name-replacement"><img src="{% static 'images/tag.svg' %}">Имя замещающего преподавателя</label>
+                    <input type="text" id="name-replacement" placeholder="Текст">
+                </div>
+                <div class="form__section">
+                    <label for="patronymic-replacement"><img src="{% static 'images/tag.svg' %}">Отчество замещающего преподавателя</label>
+                    <input type="text" id="patronymic-replacement" placeholder="Текст">
+                </div>
+                <div class="form__section">
+                    <label for="reason-replacement"><img src="{% static 'images/tag.svg' %}">Причина замены преподавателя</label>
+                    <input type="text" id="reason-replacement" placeholder="Текст">
+                </div>
+                </div>
+                <button type="submit" class="form__submit">Выгрузить заявку</button>            
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
