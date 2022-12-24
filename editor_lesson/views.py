@@ -13,7 +13,7 @@ class Schedule(TemplateView):
         context = {}
         return render(request, self.template_name,context)
 
-    
+
 
 
 class Authentication(TemplateView):
