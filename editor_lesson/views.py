@@ -11,7 +11,12 @@ class Schedule(TemplateView):
 
     def get(self, request, *args, **kwargs):
         context = {}
-        return render(request, self.template_name,context)
+        print(f"GETsdfasdfasdfsadf: {request.GET}")
+        return render(request, self.template_name)
+
+    def post(self, request):
+        print(f"POSTsadfasdfasdfasdf: {request.POST}")
+        return render(request, self.template_name)
 
 
 
