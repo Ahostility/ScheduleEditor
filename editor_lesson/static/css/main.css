@@ -1,0 +1,122 @@
+
+.site-header h1{
+	width: 551px;
+	height: 54px;
+	
+	font-family: 'Arial';
+	font-style: normal;
+	font-weight: 600;
+	font-size: 36px;
+	line-height: 54px;
+	/* identical to box height */
+	
+	
+	color: #333333;
+	
+	
+	/* Inside auto layout */
+	
+	flex: none;
+	order: 0;
+	flex-grow: 0;
+	
+}
+
+.table {
+	border: 0px solid black;
+	box-shadow: 0 4px 3px rgba(117, 110, 110, 0.6);
+	margin-bottom: 15px;
+	border-spacing: 0px;
+}
+
+.table td {
+	width: 759px;
+	height: 49px;
+
+	padding: 10px;
+	font-family: 'Open Sans';
+	font-style: normal;
+	font-weight: 600;
+	font-size: 20px;
+	line-height: 25px;
+}
+
+.first-string {
+	background-color: #333333;
+	color:#FFFFFF
+	height: 49px;
+	width: 759px;
+	left: 0px;
+	top: 0px;
+	border-radius: 0px;
+	padding: 15px;
+	border-style: none;
+
+}
+
+.first-white {
+	color: white;
+}
+
+.icon {
+    background-image: url("C:\Users\Jfisto\Desktop\schedule_editor\editor_lesson\static\images\vector.png");
+    background-repeat: no-repeat;
+    width: 12px;
+    margin-top: 6px;
+    margin-right: 14px;
+    height: 13px;
+    float: left;
+}
+
+.second-string {
+	box-sizing:border-box
+	
+	background: #FFFFFF;
+	color:#333333
+	height: 49px;
+	width: 759px;
+	left: 0px;
+	top: 0px;
+	border-radius: 0px;
+
+	font-family: 'Open Sans';
+	font-style: normal;
+	font-weight: 600;
+	font-size: 20px;
+	line-height: 25px;
+
+	border: none;
+	padding: 12px;
+}
+
+
+.button {
+    background-color: white;
+    color: #333333;
+    border: none;
+    border-radius: 25px;
+    padding: 17px;
+    cursor: pointer;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    font-family: 'Inter';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 15px;
+
+	/*float: left;
+	margin-left: 1000px;
+	width: 170px;
+	height: 61px;
+	padding: 17px;
+	margin-top: 7px;
+	background: #C132F3;
+	color: #FFFFFF;
+	border-radius: 25px;
+
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 15px;*/
+	}
