@@ -1,81 +1,168 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <title>Главная страница</title>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forms</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&family=Poppins:wght@600&display=swap" rel="stylesheet">
-    {% load static %}
-    <link  rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+
+  <head>
+	<title>Редактирование расписания</title>
+	  {% load static %}
+	<link rel="stylesheet" href="{% static 'css/main.css' %}" type="text/css"/>
 </head>
 <body>
-    <div class="wrapper">
-        <div class="container">
-            <p class="title">Редактирование расписания</p>
-            <form class="form__edit" action="" method = "post">
-                {% csrf_token %}
-                <div class="form__wrapper">
-                <div class="form__section">
-                    <label for="time-lesson"><img src="{% static 'images/tag.svg' %}">Время пары</label>
-                    <input id="time-lesson" name="time-lesson" type="text" placeholder="Текст">
-                </div>
-                <div class="form__section">
-                    <label for="type-lesson"><img src="{% static 'images/tag.svg' %}">Тип пары</label>
-                    <input id="type-lesson" name="type-lesson" type="text" placeholder="Текст">
-                </div>
-                <div class="form__section">
-                    <label for="object"><img src="{% static 'images/tag.svg' %}">Дисциплина</label>
-                    <input id="object" name="object" type="text" placeholder="Текст">
-                </div>
-                <div class="form__section">
-                    <label for="group"><img src="{% static 'images/tag.svg' %}">Имя группы</label>
-                    <input id="group" name="group" type="text" placeholder="Текст">
-                </div>
-                <div class="form__section">
-                    <label for="scientific-degree-initiator"><img src="{% static 'images/tag.svg' %}">Научная степень инициатора</label>
-                    <input id="scientific-degree" name="scientific-degree-initiator" type="text" placeholder="Текст">
-                </div>
-                <div class="form__section">
-                    <label for="surname-initiator"><img src="{% static 'images/tag.svg' %}">Фамилия инициатора замены</label>
-                    <input id="surname-initiator" name="surname-initiator" type="text" placeholder="Текст">
-                </div>
-                <div class="form__section">
-                    <label for="name-initiator"><img src="{% static 'images/tag.svg' %}">Имя инициатора замены</label>
-                    <input id="name-initiator" name="name-initiator" type="text" placeholder="Текст">
-                </div>
-                <div class="form__section">
-                    <label for="patronymic-initiator"><img src="{% static 'images/tag.svg' %}">Отчество инициатора замены</label>
-                    <input id="patronymic-initiator" name="patronymic-initiator" type="text" placeholder="Текст">
-                </div>
-                <div class="form__section">
-                    <label for="scientific-degree-replacement"><img src="{% static 'images/tag.svg' %}">Научная степень замещающего преподавателя</label>
-                    <input id="scientific-degree-replacement" name="scientific-degree-replacement" type="text" placeholder="Текст">
-                </div>
-                <div class="form__section">
-                    <label for="surname-replacement"><img src="{% static 'images/tag.svg' %}">Фамилия замещающего преподавателя</label>
-                    <input id="surname-replacement" name="surname-replacement" type="text" placeholder="Текст">
-                </div>
-                <div class="form__section">
-                    <label for="name-replacement"><img src="{% static 'images/tag.svg' %}">Имя замещающего преподавателя</label>
-                    <input id="name-replacement" name="name-replacement" type="text" placeholder="Текст">
-                </div>
-                <div class="form__section">
-                    <label for="patronymic-replacement"><img src="{% static 'images/tag.svg' %}">Отчество замещающего преподавателя</label>
-                    <input id="patronymic-replacement" name="patronymic-replacement" type="text" placeholder="Текст">
-                </div>
-                <div class="form__section">
-                    <label for="reason-replacement"><img src="{% static 'images/tag.svg' %}">Причина замены преподавателя</label>
-                    <input id="reason-replacement" name="reason-replacement" type="text" placeholder="Текст">
-                </div>
-                </div>
-                <button type="submit" class="form__submit">Выгрузить заявку</button>
-            </form>
-        </div>
-    </div>
+	<center>
+	<header class="site-header">
+		<h1>Редактирование расписания</h1>
+	</header>
+		<form action="" method="post">
+			{% csrf_token %}
+			<table class="table">
+				<tr class="first-string">
+					<td class="first-white"> <div class="icon"></div>Дата и время проведения занятия</td>
+				</tr>
 
+				<tr class="second-string">
+					<td>
+						<input name="time-lesson" type="text" placeholder="YYYY-MM-DD hh:mm - hh:mm" class="second-string">
+					</td>
+				</tr>
+			</table>
+			<table class="table">
+				<tr class="first-string">
+					<td class="first-white"> <div class="icon"></div>Тип пары</td>
+				</tr>
+
+				<tr class="second-string">
+					<td>
+						<input name="type-lesson" type="text" placeholder="лаб., лек., пр." class="second-string">
+					</td>
+				</tr>
+			</table>
+			<table class="table">
+				<tr class="first-string">
+					<td class="first-white"> <div class="icon"></div>Дисциплина</td>
+				</tr>
+
+				<tr class="second-string">
+					<td>
+						<input name="name_lesson" type="text" placeholder="Text" class="second-string">
+					</td>
+				</tr>
+			</table>
+			<table class="table">
+				<tr class="first-string">
+					<td class="first-white"> <div class="icon"></div>Имя группы</td>
+				</tr>
+
+				<tr class="second-string">
+					<td>
+						<input name="group_name" type="text" placeholder="Названия групп через запятую" class="second-string">
+					</td>
+				</tr>
+			</table>
+			<table class="table">
+				<tr class="first-string">
+					<td class="first-white">
+						<div class="icon"></div>Научная степень инициатора</td>
+				</tr>
+
+				<tr class="second-string">
+					<td>
+						<input name="science_degree_subject" type="text" placeholder="Сокращенно (проф., д.э.н. и тд)" class="second-string">
+					</td>
+				</tr>
+			</table>
+			<table class="table">
+				<tr class="first-string">
+					<td class="first-white"> <div class="icon"></div>Фамилия инициатора замены</td>
+				</tr>
+
+				<tr class="second-string">
+					<td>
+						<input name="surname_subject" type="text" placeholder="Текст" class="second-string">
+					</td>
+				</tr>
+			</table>
+			<table class="table">
+				<tr class="first-string">
+					<td class="first-white"> <div class="icon"></div>Имя инициатора замены</td>
+				</tr>
+
+				<tr class="second-string">
+					<td>
+						<input name="name_subject" type="text" placeholder="Текст" class="second-string">
+					</td>
+				</tr>
+			</table>
+			<table class="table">
+				<tr class="first-string">
+					<td class="first-white"> <div class="icon"></div>Отчество инициатора замены</td>
+				</tr>
+
+				<tr class="second-string">
+					<td>
+						<input name="parent_subject" type="text" placeholder="Текст" class="second-string">
+					</td>
+				</tr>
+			</table>
+			<table class="table">
+			<tr class="first-string">
+				<td class="first-white">
+					<div class="icon"></div>Научная степень замещающего преподавателя</td>
+			</tr>
+
+			<tr class="second-string">
+				<td>
+					<input name="science_degree_object" type="text" placeholder="Текст" class="second-string">
+				</td>
+			</tr>
+			</table>
+			<table class="table">
+				<tr class="first-string">
+					<td class="first-white"> <div class="icon"></div>Имя замещающего преподавателя</td>
+				</tr>
+
+				<tr class="second-string">
+					<td>
+						<input name="surname_object" type="text" placeholder="Текст" class="second-string">
+					</td>
+				</tr>
+			</table>
+			<table class="table">
+				<tr class="first-string">
+					<td class="first-white"> <div class="icon"></div>Имя замещающего преподавателя</td>
+				</tr>
+
+				<tr class="second-string">
+					<td>
+						<input name="name_object" type="text" placeholder="Текст" class="second-string">
+					</td>
+				</tr>
+			</table>
+			<table class="table">
+				<tr class="first-string">
+					<td class="first-white"> <div class="icon"></div>Отчество замещающего преподавателя</td>
+				</tr>
+
+				<tr class="second-string">
+					<td>
+						<input name="parent_object" type="text" placeholder="Текст" class="second-string">
+					</td>
+				</tr>
+			</table>
+			<table class="table">
+				<tr class="first-string">
+					<td class="first-white"><div class="icon"></div>Причина замены преподавателя</td>
+				</tr>
+
+				<tr class="second-string">
+					<td>
+						<input name="cause" type="text" placeholder="Text" class="second-string">
+					</td>
+				</tr>
+			</table>
+			<button type="submit" class="button">Выгрузить заявку</button>
+		</form>
+
+
+<!--<div style="height: 100px;"></div>-->
+
+	</center>
 </body>
-</html>

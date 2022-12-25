@@ -11,11 +11,13 @@ class Schedule(TemplateView):
 
     def get(self, request, *args, **kwargs):
         context = {}
-        print(f"GETsdfasdfasdfsadf: {request.GET}")
-        return render(request, self.template_name)
+        return render(request, self.template_name,context)
 
     def post(self, request):
-        print(f"POSTsadfasdfasdfasdf: {request.POST}")
+        print(f"list: {request.POST.dict()}")
+        data = request.POST.dict()
+        time = dict(data)
+        print(time)
         return render(request, self.template_name)
 
 
@@ -29,12 +31,6 @@ class Authentication(TemplateView):
         context = {}
         return render(request, self.template_name,context)
 
-    # def post(self, response):
-
-
-        # return JsonResponse({
-        #     'method': 'GET'
-        # })
 
 
 

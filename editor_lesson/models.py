@@ -118,21 +118,22 @@ class DjangoSession(models.Model):
         db_table = 'django_session'
 
 
-class Schedule(models.Model):
-    time_period = models.TextField()
-    type_lesson = models.TextField()
-    name_lesson = models.TextField()
-    group_name = models.TextField()
-    science_degree_subject = models.TextField()
-    surname_subject = models.TextField()
-    name_subject = models.TextField()
-    parent_subject = models.TextField()
-    science_degree_object = models.TextField()
-    surname_object = models.TextField()
-    name_object = models.TextField()
-    parent_object = models.TextField()
-    cause = models.TextField()
+class ScheduleTable(models.Model):
+    time_period = models.CharField(max_length=55)
+    type_lesson = models.CharField(max_length=10)
+    name_lesson = models.CharField(max_length=55)
+    group_name = models.CharField(max_length=55)
+    science_degree_subject = models.CharField(max_length=25)
+    surname_subject = models.CharField(max_length=55)
+    name_subject = models.CharField(max_length=55)
+    parent_subject = models.CharField(max_length=55)
+    science_degree_object = models.CharField(max_length=25)
+    surname_object = models.CharField(max_length=55)
+    name_object = models.CharField(max_length=55)
+    parent_object = models.CharField(max_length=55)
+    cause = models.CharField(max_length=255)
+    count_modified = models.IntegerField()
 
     class Meta:
-        managed = False
-        db_table = 'schedule'
+        managed = True
+        db_table = 'schedule_table'

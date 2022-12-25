@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Schedule
+from .models import ScheduleTable
 # Register your models here.
 
-admin.site.register(Schedule) #Schedule in admin console
+admin.site.register(ScheduleTable) #Schedule table in admin console
