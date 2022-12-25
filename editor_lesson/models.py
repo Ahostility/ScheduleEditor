@@ -132,8 +132,10 @@ class ScheduleTable(models.Model):
     name_object = models.CharField(max_length=55)
     parent_object = models.CharField(max_length=55)
     cause = models.CharField(max_length=255)
-    count_modified = models.IntegerField()
+    count_modified = models.IntegerField(default=0)
 
     class Meta:
         managed = True
         db_table = 'schedule_table'
+
+# from editor_lesson.models import ScheduleTable

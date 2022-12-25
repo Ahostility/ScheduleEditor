@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'editor_lesson.apps.EditorLessonConfig',
     'rest_framework',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
