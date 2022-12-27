@@ -1,10 +1,5 @@
-import uuid
-
-import aspose.words as aw
-import os
-from docx import Document, shared
+from docx import Document
 from .dirs import EXMPL_DIR, SAVE_DIR
-from docx.enum.style import WD_STYLE_TYPE
 
 
 class EditDocSchedule():
@@ -39,9 +34,8 @@ class EditDocSchedule():
                 if j.text.find(i) >= 0:
                     j.text = j.text.replace(i,dictionary[i])
 
-        # file_name = SAVE_DIR / 'file.docx'
         doc.save(SAVE_DIR / 'file.docx')
-        # print(file_name)
+
         return SAVE_DIR / 'file.docx'
 
 

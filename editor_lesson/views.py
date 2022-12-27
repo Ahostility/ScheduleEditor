@@ -14,7 +14,7 @@ class Schedule(TemplateView):
               'parent_subject', 'science_degree_object', 'surname_object', 'name_object',
               'parent_object', 'cause']
 
-    def get(self, request, *args, **kwargs):
+    def get(self, request, *args, **kwargs): # Get page
         ctx = {
             'list_parm': [
                 {'title': 'Дата и время проведения занятия',
@@ -73,7 +73,7 @@ class Schedule(TemplateView):
         }
         return render(request, self.template_name, ctx)
 
-    def post(self, request):
+    def post(self, request): # POST requset from page
         try:
             data = dict(request.POST.dict())
 
@@ -86,7 +86,7 @@ class Schedule(TemplateView):
         except ValueError:
             return HttpResponseServerError(ValueError)
 
-    def __save_request_to_db(self, req) -> None:
+    def __save_request_to_db(self, req) -> None: # Save data to db
         table_schedule = ScheduleTable()
         table_schedule.time_period = req.POST.get(self.key_db[1])
         table_schedule.type_lesson = req.POST.get(self.key_db[2])
@@ -104,34 +104,13 @@ class Schedule(TemplateView):
         table_schedule.save()
         pass
 
-    def __select_table(self):
-        # table_scgedule = ScheduleTable.objects.all()
-        # print(table_scgedule.valuse())
-
-        # time = dict(data)
-        # print(data.)
-        # schedule_table = ScheduleTable(
-        #     time_period =
-        #     type_lesson =
-        #     name_lesson =
-        #     group_name =
-        #     science_degree_subject =
-        #     surname_subject =
-        #     name_subject =
-        #     parent_subject =
-        #     science_degree_object =
-        #     surname_object =
-        #     name_object =
-        #     parent_object =
-        #     cause =
-        #     count_modified =
-        # )
+    def __select_table(self): # Select data from table
         pass
 
 
 class Authentication(TemplateView):
     template_name = 'auth.html'
 
-    def get(self, request, *args, **kwargs):
+    def get(self, request, *args, **kwargs): # Get auth of index page
         context = {}
         return render(request, self.template_name, context)
