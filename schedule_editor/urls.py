@@ -21,5 +21,5 @@ urlpatterns = [
     path('web-admin/', admin.site.urls),
     path('', Schedule.as_view()),
     path('schedule/', Schedule.as_view()),
-    path('auth/', Authentication.as_view())
+    path('auth/', Authentication.as_view()),
 ]

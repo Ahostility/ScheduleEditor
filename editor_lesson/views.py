@@ -1,21 +1,12 @@
+import uuid
 from django.shortcuts import render
-from django.http import HttpResponse
-from django.http import JsonResponse
+from django.http import HttpResponse, HttpResponseServerError
 from django.views.generic import TemplateView
-from django.core.files.storage import FileSystemStorage
 from .models import ScheduleTable
 from editor_lesson.create_doc import edit_document
 
-from django.http import FileResponse
-import mimetypes
-from django.http import StreamingHttpResponse
-from wsgiref.util import FileWrapper
-import os
-
-
 
 class Schedule(TemplateView):
-
     template_name = 'index.html'
 
     key_db = ['csrfmiddlewaretoken', 'time_period', 'type_lesson', 'name_lesson',
@@ -24,25 +15,78 @@ class Schedule(TemplateView):
               'parent_object', 'cause']
 
     def get(self, request, *args, **kwargs):
-        context = {}
-        return render(request, self.template_name,context)
-
+        ctx = {
+            'list_parm': [
+                {'title': 'Дата и время проведения занятия',
+                 'name': self.key_db[1],
+                 'placeholder': "DD.MM.YYYY-hh:mm-hh:mm"
+                 },
+                {'title': 'Тип пары',
+                 'name': self.key_db[2],
+                 'placeholder': "Лек/Лаб"
+                 },
+                {'title': 'Дисциплина',
+                 'name': self.key_db[3],
+                 'placeholder': "Наименование"
+                 },
+                {'title': 'Имя группы',
+                 'name': self.key_db[4],
+                 'placeholder': "Группа(ы)"
+                 },
+                {'title': 'Научная степень инициатора',
+                 'name': self.key_db[5],
+                 'placeholder': "Сокращенно(проф.,д.э.н.)"
+                 },
+                {'title': 'Фамилия инициатора замены',
+                 'name': self.key_db[6],
+                 'placeholder': "Текст"
+                 },
+                {'title': 'Имя инициатора замены',
+                 'name': self.key_db[7],
+                 'placeholder': "Текст"
+                 },
+                {'title': 'Отчество инициатора замены',
+                 'name': self.key_db[8],
+                 'placeholder': "Текст"
+                 },
+                {'title': 'Научная степень замещающего преподавателя',
+                 'name': self.key_db[9],
+                 'placeholder': "Текст"
+                 },
+                {'title': 'Фамилия замещающего преподавателя',
+                 'name': self.key_db[10],
+                 'placeholder': "Текст"
+                 },
+                {'title': 'Имя замещающего преподавателя',
+                 'name': self.key_db[11],
+                 'placeholder': "Текст"
+                 },
+                {'title': 'Отчество замещающего преподавателя',
+                 'name': self.key_db[12],
+                 'placeholder': "Текст"
+                 },
+                {'title': 'Причина замены преподавателя',
+                 'name': self.key_db[13],
+                 'placeholder': "Текст"
+                 }
+            ]
+        }
+        return render(request, self.template_name, ctx)
 
     def post(self, request):
-        # print(f"list: {request.POST.dict()}")
-        # data = json.dumps(request.POST.dict(),indent=4)
-        data = dict(request.POST.dict())
-        print(self.key_db,data)
-        file_path = edit_document(data)
+        try:
+            data = dict(request.POST.dict())
 
-        # self.__save_request_to_db(request)
-        # self.__select_table()
+            file = edit_document(data)
+            bytes = open(file, 'rb')
 
-        # responce = FileResponse(open(file_path,'rb'))
-        return render(request, self.template_name,)
+            response = HttpResponse(bytes, content_type='application/docx')
+            response['Content-Disposition'] = f"attachment; filename={uuid.uuid4()}.docx"
+            return response
+        except ValueError:
+            return HttpResponseServerError(ValueError)
 
-
-    def __save_request_to_db(self,req) -> None:
+    def __save_request_to_db(self, req) -> None:
         table_schedule = ScheduleTable()
         table_schedule.time_period = req.POST.get(self.key_db[1])
         table_schedule.type_lesson = req.POST.get(self.key_db[2])
@@ -59,7 +103,6 @@ class Schedule(TemplateView):
         table_schedule.cause = req.POST.get(self.key_db[13])
         table_schedule.save()
         pass
-
 
     def __select_table(self):
         # table_scgedule = ScheduleTable.objects.all()
@@ -87,9 +130,8 @@ class Schedule(TemplateView):
 
 
 class Authentication(TemplateView):
-
     template_name = 'auth.html'
 
     def get(self, request, *args, **kwargs):
         context = {}
-        return render(request, self.template_name,context)
+        return render(request, self.template_name, context)

@@ -5,6 +5,7 @@
 	<title>Редактирование расписания</title>
 	  {% load static %}
 	<link rel="stylesheet" href="{% static 'css/main.css' %}" type="text/css"/>
+
 </head>
 <body>
 	<center>
@@ -13,159 +14,19 @@
 	</header>
 		<form action="" method="post">
 			{% csrf_token %}
+			{% for i in list_parm %}
 			<table class="table">
 				<tr class="first-string">
-					<td class="first-white"> <div class="icon"></div>Дата и время проведения занятия</td>
+					<td class="first-white"> <div class="icon"></div>{{ i.title }}</td>
 				</tr>
 
 				<tr class="second-string">
 					<td>
-						<input name="time_period" type="text" placeholder="DD.MM.YYYY-hh:mm-hh:mm" class="second-string">
+						<input name={{ i.name }} type="text" placeholder={{ i.placeholder }} class="second-string">
 					</td>
 				</tr>
 			</table>
-			<table class="table">
-				<tr class="first-string">
-					<td class="first-white"> <div class="icon"></div>Тип пары</td>
-				</tr>
-
-				<tr class="second-string">
-					<td>
-						<input name="type_lesson" type="text" placeholder="лекция или лабораторная работа" class="second-string">
-					</td>
-				</tr>
-			</table>
-			<table class="table">
-				<tr class="first-string">
-					<td class="first-white"> <div class="icon"></div>Дисциплина</td>
-				</tr>
-
-				<tr class="second-string">
-					<td>
-						<input name="name_lesson" type="text" placeholder="Text" class="second-string">
-					</td>
-				</tr>
-			</table>
-			<table class="table">
-				<tr class="first-string">
-					<td class="first-white"> <div class="icon"></div>Имя группы</td>
-				</tr>
-
-				<tr class="second-string">
-					<td>
-						<input name="group_name" type="text" placeholder="Названия групп через запятую" class="second-string">
-					</td>
-				</tr>
-			</table>
-			<table class="table">
-				<tr class="first-string">
-					<td class="first-white">
-						<div class="icon"></div>Научная степень инициатора</td>
-				</tr>
-
-				<tr class="second-string">
-					<td>
-						<input name="science_degree_subject" type="text" placeholder="Сокращенно (проф., д.э.н. и тд)" class="second-string">
-					</td>
-				</tr>
-			</table>
-			<table class="table">
-				<tr class="first-string">
-					<td class="first-white"> <div class="icon"></div>Фамилия инициатора замены</td>
-				</tr>
-
-				<tr class="second-string">
-					<td>
-						<input name="surname_subject" type="text" placeholder="Текст" class="second-string">
-					</td>
-				</tr>
-			</table>
-			<table class="table">
-				<tr class="first-string">
-					<td class="first-white"> <div class="icon"></div>Имя инициатора замены</td>
-				</tr>
-
-				<tr class="second-string">
-					<td>
-						<input name="name_subject" type="text" placeholder="Текст" class="second-string">
-					</td>
-				</tr>
-			</table>
-			<table class="table">
-				<tr class="first-string">
-					<td class="first-white"> <div class="icon"></div>Отчество инициатора замены</td>
-				</tr>
-
-				<tr class="second-string">
-					<td>
-						<input name="parent_subject" type="text" placeholder="Текст" class="second-string">
-					</td>
-				</tr>
-			</table>
-			<table class="table">
-			<tr class="first-string">
-				<td class="first-white">
-					<div class="icon"></div>Научная степень замещающего преподавателя</td>
-			</tr>
-
-			<tr class="second-string">
-				<td>
-					<input name="science_degree_object" type="text" placeholder="Текст" class="second-string">
-				</td>
-			</tr>
-			</table>
-			<table class="table">
-				<tr class="first-string">
-					<td class="first-white"> <div class="icon"></div>Имя замещающего преподавателя</td>
-				</tr>
-
-				<tr class="second-string">
-					<td>
-						<input name="surname_object" type="text" placeholder="Текст" class="second-string">
-					</td>
-				</tr>
-			</table>
-			<table class="table">
-				<tr class="first-string">
-					<td class="first-white"> <div class="icon"></div>Имя замещающего преподавателя</td>
-				</tr>
-
-				<tr class="second-string">
-					<td>
-						<input name="name_object" type="text" placeholder="Текст" class="second-string">
-					</td>
-				</tr>
-			</table>
-			<table class="table">
-				<tr class="first-string">
-					<td class="first-white"> <div class="icon"></div>Отчество замещающего преподавателя</td>
-				</tr>
-
-				<tr class="second-string">
-					<td>
-						<input name="parent_object" type="text" placeholder="Текст" class="second-string">
-					</td>
-				</tr>
-			</table>
-			<table class="table">
-				<tr class="first-string">
-					<td class="first-white"><div class="icon"></div>Причина замены преподавателя</td>
-				</tr>
-
-				<tr class="second-string">
-					<td>
-						<input name="cause" type="text" placeholder="Text" class="second-string">
-					</td>
-				</tr>
-			</table>
+			{% endfor %}
 			<button type="submit" class="button">Отправить заявку</button>
-		</form>
-		<a href="C:\Users\Jfisto\Desktop\schedule_editor\editor_lesson\static\data\save\file.docx" target="_blank" download>
-			<button type="submit" class="button">Выгрузить записку</button>
-		</a>
-
-
-<!--<div style="height: 100px;"></div>-->
-
 	</center>
 </body>

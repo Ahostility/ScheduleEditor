@@ -3,6 +3,7 @@ import uuid
 import aspose.words as aw
 import os
 from docx import Document, shared
+from .dirs import EXMPL_DIR, SAVE_DIR
 from docx.enum.style import WD_STYLE_TYPE
 
 
@@ -32,30 +33,31 @@ class EditDocSchedule():
                       'cause': self.req.get('cause')
                       }
 
-        doc = Document(r'C:\Users\Jfisto\Desktop\schedule_editor\editor_lesson\static\data\example\example.docx')
+        doc = Document(EXMPL_DIR / 'example.docx')
         for i in dictionary:
             for j in doc.paragraphs:
                 if j.text.find(i) >= 0:
                     j.text = j.text.replace(i,dictionary[i])
 
-        file_name = r'C:\Users\Jfisto\Desktop\schedule_editor\editor_lesson\static\data\save\file.docx'
-        doc.save(file_name)
-        return file_name
+        # file_name = SAVE_DIR / 'file.docx'
+        doc.save(SAVE_DIR / 'file.docx')
+        # print(file_name)
+        return SAVE_DIR / 'file.docx'
 
 
-    def _delite_file(self):
-        dir = 'C:\Users\Jfisto\Desktop\schedule_editor\editor_lesson\static\data\save'
-        for f in os.listdir(dir):
-            os.remove(os.path.join(dir, f))
-        pass
+    # def _delite_file(self):
+    #     dir = 'C:\Users\Jfisto\Desktop\schedule_editor\editor_lesson\static\data\save'
+    #     for f in os.listdir(dir):
+    #         os.remove(os.path.join(dir, f))
+    #     pass
 
 
 def edit_document(req):
     edit = EditDocSchedule(req)
-    edit._delite_file()
-    edit._edit_document()
+    # edit._delite_file()
+    return edit._edit_document()
 
 # 25.12.2022-10:15-12:00
 
-if __name__ == '__main__':
-    edit_document()
+# if __name__ == '__main__':
+#     edit_document()
