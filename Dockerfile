@@ -1,7 +1,7 @@
 FROM python:3
 
 VOLUME /var/lib/django-db
-ENV DATABASE_URL sqlite:////var/lib/django-db/schedule_db.sqlite
+ENV DATABASE_URL sqlite:////var/lib/django-db/schedule_db.sqlite2
 
 RUN apt-get update && apt-get upgrade -y && apt-get autoremove && apt-get autoclean
 
