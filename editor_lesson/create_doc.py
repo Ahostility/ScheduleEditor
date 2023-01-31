@@ -1,4 +1,5 @@
 from docx import Document
+from docx.shared import Pt
 from .dirs import EXMPL_DIR, SAVE_DIR
 
 
@@ -29,8 +30,12 @@ class EditDocSchedule():
                       }
 
         doc = Document(EXMPL_DIR / 'example.docx')
+        # style = doc.styles['Normal']
+        # style.font.name = 'Time New Roman'
+        # style.font. size = Pt(16)
         for i in dictionary:
             for j in doc.paragraphs:
+                # print(j[0])
                 if j.text.find(i) >= 0:
                     j.text = j.text.replace(i,dictionary[i])
 

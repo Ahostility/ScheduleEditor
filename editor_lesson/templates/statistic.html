@@ -2,7 +2,7 @@
 <html lang="ru">
 
   <head>
-	<title>Редактирование расписания</title>
+	<title>Статистика замен</title>
 	  {% load static %}
 	<link rel="stylesheet" href="{% static 'css/main.css' %}" type="text/css"/>
 
@@ -10,7 +10,7 @@
 <body>
 	<center>
 	<header class="site-header">
-		<h1>Редактирование расписания</h1>
+		<h1>Статистика замен</h1>
 	</header>
 		<form action="" method="post">
 			{% csrf_token %}
@@ -27,7 +27,7 @@
 				</tr>
 			</table>
 			{% endfor %}
-			<button type="submit" class="button">Отправить заявку</button>
+			<button type="submit" class="button">Выгрузить записку</button>
 		</form>
 	</center>
 </body>
