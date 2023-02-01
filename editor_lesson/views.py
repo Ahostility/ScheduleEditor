@@ -73,14 +73,11 @@ class Schedule(TemplateView):
                  }
             ]
         }
-        self.__select_table()
         return render(request, self.template_name, ctx)
 
 
     def post(self, request): # POST requset from page
         self.__save_request_to_db(request)
-        # self.__select_table()
-
         data = dict(request.POST.dict())
         edit_document(data)
         return HttpResponseRedirect("statistic/")
@@ -102,104 +99,72 @@ class Schedule(TemplateView):
         table_schedule.parent_object = req.POST.get(self.key_db[12])
         table_schedule.cause = req.POST.get(self.key_db[13])
         table_schedule.save()
-        print(table_schedule.name_subject)
-        pass
-
-
-    def __select_table(self): # Select data from table
-        pass
-
-        # try:
-        #     sqlite_connection = sqlite3.connect(BASE_DIR / 'schedule_db.sqlite')
-        #     cursor = sqlite_connection.cursor()
-        #     print("Подключен к SQLite")
-        #
-        #     sqlite_select_query = f"""SELECT * from schedule_table"""
-        #     cursor.execute(sqlite_select_query)
-        #     print("Чтение одной строки \n")
-        #     record = cursor.fetchall()
-        #     print(f"count {cursor.rowcount")
-        #     for row in record:
-        #         print(row)
-                # print("ID:", row[0])
-                # print("Дата и время проведения занятия:", row[1])
-                # print("Тип пары:", row[2])
-                # print("Дисциплина:", row[3])
-                # print("Имя группы:", row[4])
-                # print("Научная степень инициатора:", row[5])
-                # print("Фамилия инициатора замены", row[6])
-                # print("Имя инициатора замены", row[7])
-                # print("Отчество инициатора замены", row[8])
-                # print("Научная степень замещающего преподавателя", row[9])
-                # print("Фамилия замещающего преподавателя", row[10])
-                # print("Имя замещающего преподавателя", row[11])
-                # print("Отчество замещающего преподавателя", row[12])
-                # print("Причина замены преподавателя", row[13])
-                # print("Имя группы:", row[14])
-            # cursor.close()
-        #
-        # except sqlite3.Error as error:
-        #     print("Ошибка при работе с SQLite", error)
-        # finally:
-        #     if sqlite_connection:
-        #         sqlite_connection.close()
-        #         print("Соединение с SQLite закрыто")
 
 
 class Statistic(TemplateView):
     template_name = 'statistic.html'
 
-    key_db = ['csrfmiddlewaretoken', 'subject_name', 'object_name']
+    key_db = ['csrfmiddlewaretoken', 'name_subject', 'name_object']
 
     def get(self, request, *args, **kwargs): # Get auth of index page
+
+        data = self._select_table() # создание вывода статистики
+        stat = self._select_statistic(data.get(self.key_db[1]), data.get(self.key_db[2]))
+
         ctx = {
             'list_parm': [
-                {'title': 'Инициатор замены',
+                {'title': f"Замещаемый перподаватель",
                  'name': self.key_db[1],
-                 'placeholder': 10
+                 'placeholder':  data.get(self.key_db[2]),
+                 'number': len(stat[0])
                  },
-                {'title': 'Замещающий перподавватель',
+                {'title': "Замещающий преподаватель",
                  'name': self.key_db[2],
-                 'placeholder': 12
+                 'placeholder':  data.get(self.key_db[2]),
+                 'number': len(stat[1])
                  }
             ]
         }
         return render(request, self.template_name, ctx)
 
 
-    def post(self, request): # POST requset from page
-        # try:
-        self._select_table()
-            # file = edit_document(data)
-            # bytes = open(file, 'rb')
+    def post(self,request): # POST requset from page
+        try:
+            data = self._select_table()
+            file = edit_document(data)
+            bytes = open(file, 'rb')
 
-            # response = HttpResponse(bytes, content_type='application/docx')
-            # response['Content-Disposition'] = f"attachment; filename={uuid.uuid4()}.docx"
-            # return response
-        # except ValueError:
-        #     return HttpResponseServerError(ValueError)
+            response = HttpResponse(bytes, content_type='application/docx')
+            response['Content-Disposition'] = f"attachment; filename={uuid.uuid4()}.docx"
+            return response
+        except ValueError:
+            return HttpResponseServerError(ValueError)
 
-    def _select_table(self):
+    def _select_table(self,):
+        table_schedule = ScheduleTable.objects.get(id = ScheduleTable.objects.all().last().id)
+        data_new = {
+            'time_period':table_schedule.time_period,
+            'type_lesson': table_schedule.type_lesson,
+            'name_lesson':table_schedule.name_lesson,
+            'group_name':table_schedule.group_name,
+            'science_degree_subject':table_schedule.science_degree_subject,
+            'surname_subject':table_schedule.surname_subject,
+            'name_subject':table_schedule.name_subject,
+            'parent_subject':table_schedule.parent_subject,
+            'science_degree_object':table_schedule.science_degree_object,
+            'surname_object':table_schedule.surname_object,
+            'name_object':table_schedule.name_object,
+            'parent_object':table_schedule.parent_object,
+            'cause':table_schedule.cause
+        }
+        return data_new
 
-        time_period = ScheduleTable.objects.get(pk=1)
-        print(time_period)
+    def _select_statistic(self,subject,object):
+        subject_name = ScheduleTable.objects.filter(name_subject=subject)
+        object_name = ScheduleTable.objects.filter(name_object=object)
+        return subject_name,object_name
 
-        # table_schedule.time_period = req.POST.get(self.key_db[1])
-        # table_schedule.type_lesson = req.POST.get(self.key_db[2])
-        # table_schedule.name_lesson = req.POST.get(self.key_db[3])
-        # table_schedule.group_name = req.POST.get(self.key_db[4])
-        # table_schedule.science_degree_subject = req.POST.get(self.key_db[5])
-        # table_schedule.surname_subject = req.POST.get(self.key_db[6])
-        # table_schedule.name_subject = req.POST.get(self.key_db[7])
-        # table_schedule.parent_subject = req.POST.get(self.key_db[8])
-        # table_schedule.science_degree_object = req.POST.get(self.key_db[9])
-        # table_schedule.surname_object = req.POST.get(self.key_db[10])
-        # table_schedule.name_object = req.POST.get(self.key_db[11])
-        # table_schedule.parent_object = req.POST.get(self.key_db[12])
-        # table_schedule.cause = req.POST.get(self.key_db[13])
-        # table_schedule.save()
-        # print(table_schedule.name_subject)
-        pass
+
 
 
 class Authentication(TemplateView):
@@ -220,3 +185,7 @@ class Authentication(TemplateView):
         #         return HttpResponseServerError(ValueError)
 
         return render(request, self.template_name, context)
+
+if __name__ == '__main__':
+    select = Statistic()
+    print(select._select_table())
