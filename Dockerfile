@@ -19,4 +19,4 @@ ADD editor_lesson /home/schedule_editor/editor_lesson
 
 COPY manage.py /home/schedule_editor
 
-#COPY schedule_db.sqlite3 /home/schedule_editor
+COPY schedule_db.sqlite /home/schedule_editor

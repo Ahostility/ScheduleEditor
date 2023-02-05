@@ -11,6 +11,8 @@ class EditDocSchedule():
 
     def _edit_document(self,):
         time = str(self.req.get('time_period')).split('-')
+        subject = str(self.req.get('subject')).split(" ")
+        object = str(self.req.get('object')).split(" ")
 
         dictionary = {'date': time[0],
                       'time_start': time[1],
@@ -19,13 +21,13 @@ class EditDocSchedule():
                       'name_lesson': self.req.get('name_lesson'),
                       'group_name': self.req.get('group_name'),
                       'science_degree_subject': self.req.get('science_degree_subject'),
-                      'surname_subject': self.req.get('surname_subject'),
-                      'name_subject': self.req.get('name_subject'),
-                      'parent_subject': self.req.get('parent_subject'),
+                      'surname_subject': subject[0],
+                      'name_subject': subject[1][0],
+                      'parent_subject': subject[2][0],
                       'science_degree_object': self.req.get('science_degree_object'),
-                      'surname_object': self.req.get('surname_object'),
-                      'name_object': self.req.get('name_object'),
-                      'parent_object': self.req.get('parent_object'),
+                      'surname_object': object[0],
+                      'name_object': object[1][0],
+                      'parent_object': object[2][0],
                       'cause': self.req.get('cause')
                       }
 

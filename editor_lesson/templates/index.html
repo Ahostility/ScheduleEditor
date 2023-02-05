@@ -27,6 +27,150 @@
 				</tr>
 			</table>
 			{% endfor %}
+
+			<table class="table">
+				<tr class="first-string">
+					<td class="first-white"> <div class="icon"></div>{{ subject_people }}</td>
+				</tr>
+
+				<tr class="second-string">
+
+					<td>
+						<select name="subject" class="second-string">
+							{% for p in list_people_su %}
+							<option value="{{ p.contains }}"> {{ p.contains }}</option>
+							{% endfor %}
+						</select>
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+							<select name="job_subject" class="second-string">
+								{% for j in list_job_su %}
+								<option value="{{ j.contains }}"> {{ j.contains }}</option>
+								{% endfor %}
+							</select>
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+							<select name="science_degree_subject" class="second-string">
+								{% for s in list_since_su %}
+								<option value="{{ s.contains }}">{{ s.contains }}</option>
+								{% endfor %}
+							</select>
+					</td>
+				</tr>
+			</table>
+
+			<table class="table">
+				<tr class="first-string">
+					<td class="first-white"> <div class="icon"></div>{{ object_people }}</td>
+				</tr>
+
+				<tr class="second-string">
+
+					<td>
+						<select name="object" class="second-string">
+							{% for p in list_people_obj %}
+							<option value="{{ p.contains }}"> {{ p.contains }}</option>
+							{% endfor %}
+						</select>
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+							<select name="job_object" class="second-string">
+								{% for j in list_job_obj %}
+								<option value="{{ j.contains }}"> {{ j.contains}}</option>
+								{% endfor %}
+							</select>
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+							<select name="science_degree_object" class="second-string">
+								{% for s in list_since_obj %}
+								<option value="{{ s.contains }}">{{ s.contains }}</option>
+								{% endfor %}
+							</select>
+					</td>
+				</tr>
+
+			</table>
+
+<!--			<table class="table">-->
+<!--				<tr class="first-string">-->
+<!--					<td class="first-white"> <div class="icon"></div> {{ title_since }}</td>-->
+<!--				</tr>-->
+
+<!--				<tr class="second-string">-->
+<!--					<td>-->
+<!--						<select class="second-string">-->
+<!--							{% for s in list_since %}-->
+<!--							<option name="{{ s.name }}" class="second-string">{{ s.contains }}</option>-->
+<!--							{% endfor %}-->
+<!--						</select>-->
+<!--					</td>-->
+<!--				</tr>-->
+<!--			</table>-->
+
+<!--			<table class="table">-->
+<!--				<tr class="first-string">-->
+<!--					<td class="first-white"> <div class="icon"></div>{{ title_people }}</td>-->
+<!--				</tr>-->
+
+<!--				<tr class="second-string">-->
+<!--					<td name="test" method="get">-->
+<!--						<select class="second-string">-->
+<!--							{% for p in list_people %}-->
+<!--							<option name="{{ p.name }}">{{ p.contains }}</option>-->
+<!--							{% endfor %}-->
+<!--						</select>-->
+<!--					</td>-->
+<!--				</tr>-->
+<!--			</table>-->
+
+<!--			<table class="table">-->
+<!--				<tr class="first-string">-->
+<!--					<td class="first-white"> <div class="icon"></div>{{ title_people }}</td>-->
+<!--				</tr>-->
+
+<!--				<tr class="second-string">-->
+<!--					<td name="test" method="get">-->
+<!--						<select class="second-string">-->
+<!--							{% for p in list_people %}-->
+<!--							<option name="{{ p.name }}">{{ p.contains }}</option>-->
+<!--							{% endfor %}-->
+<!--						</select>-->
+<!--					</td>-->
+<!--				</tr>-->
+<!--			</table>-->
+
+
+
+
+
+
+<!--			{% for j in list_people %}-->
+<!--			<table class="table">-->
+<!--				<tr class="first-string">-->
+<!--					<td class="first-white"> <div class="icon"></div>{{ j.title }}</td>-->
+<!--				</tr>-->
+
+<!--				<tr class="second-string">-->
+<!--					<td>-->
+<!--						<input name={{ j.name }} type="text" placeholder={{ j.placeholder }} class="second-string">-->
+<!--					</td>-->
+<!--				</tr>-->
+<!--			</table>-->
+<!--			{% endfor %}-->
+
+
 			<button type="submit" class="button">Отправить заявку</button>
 		</form>
 	</center>
