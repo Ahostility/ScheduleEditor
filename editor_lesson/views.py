@@ -5,6 +5,7 @@ from django.http import HttpResponse, HttpResponseServerError, HttpResponseRedir
 from django.views.generic import TemplateView
 from .models import ScheduleTable
 from editor_lesson.create_doc import edit_document
+from .create_date import DataRasp
 
 
 class Schedule(TemplateView):
@@ -16,12 +17,14 @@ class Schedule(TemplateView):
               'science_degree_object', 'job_object', 'object']
 
     def get(self, request, *args, **kwargs): # Get page
+        min_time = DataRasp()
         ctx = {
+            'data_lesson':{
+                'title': 'Дата и время проведения занятия',
+                'name': self.key_db[1],
+                'date_min': min_time.date_min()
+            },
             'list_parm': [
-                {'title': 'Дата и время проведения занятия',
-                 'name': self.key_db[1],
-                 'placeholder': "DD.MM.YYYY-hh:mm-hh:mm"
-                 },
                 {'title': 'Тип пары',
                  'name': self.key_db[2],
                  'placeholder': "Лек/Лаб"

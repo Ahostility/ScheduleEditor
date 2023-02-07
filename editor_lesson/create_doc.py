@@ -1,6 +1,7 @@
 from docx import Document
 from docx.shared import Pt
 from .dirs import EXMPL_DIR, SAVE_DIR
+from .create_date import DataRasp
 
 
 class EditDocSchedule():
@@ -10,13 +11,15 @@ class EditDocSchedule():
 
 
     def _edit_document(self,):
-        time = str(self.req.get('time_period')).split('-')
+        date_lessons = DataRasp()
+        date_start_end = date_lessons.sum_date(str(self.req.get('time_period')))
+        day = date_start_end[0].split('-')
         subject = str(self.req.get('subject')).split(" ")
         object = str(self.req.get('object')).split(" ")
 
-        dictionary = {'date': time[0],
-                      'time_start': time[1],
-                      'time_end': time[2],
+        dictionary = {'date': f"{day[2]}.{day[1]}.{day[0]}",
+                      'time_start':date_start_end[1],
+                      'time_end': date_start_end[2],
                       'type_lesson': self.req.get('type_lesson'),
                       'name_lesson': self.req.get('name_lesson'),
                       'group_name': self.req.get('group_name'),

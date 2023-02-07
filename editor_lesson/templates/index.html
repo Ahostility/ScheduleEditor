@@ -14,6 +14,17 @@
 	</header>
 		<form action="" method="post">
 			{% csrf_token %}
+			<table class="table">
+				<tr class="first-string">
+					<td class="first-white"> <div class="icon"></div>{{ data_lesson.title }}</td>
+				</tr>
+				<tr class="second-string">
+					<td>
+						<input type="datetime-local" name={{ data_lesson.name }} class="second-string" min="{{ data_lesson.date_min }}" required pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}">
+    <span class="validity"></span>
+					</td>
+				</tr>
+			</table>
 			{% for i in list_parm %}
 			<table class="table">
 				<tr class="first-string">
@@ -102,74 +113,6 @@
 				</tr>
 
 			</table>
-
-<!--			<table class="table">-->
-<!--				<tr class="first-string">-->
-<!--					<td class="first-white"> <div class="icon"></div> {{ title_since }}</td>-->
-<!--				</tr>-->
-
-<!--				<tr class="second-string">-->
-<!--					<td>-->
-<!--						<select class="second-string">-->
-<!--							{% for s in list_since %}-->
-<!--							<option name="{{ s.name }}" class="second-string">{{ s.contains }}</option>-->
-<!--							{% endfor %}-->
-<!--						</select>-->
-<!--					</td>-->
-<!--				</tr>-->
-<!--			</table>-->
-
-<!--			<table class="table">-->
-<!--				<tr class="first-string">-->
-<!--					<td class="first-white"> <div class="icon"></div>{{ title_people }}</td>-->
-<!--				</tr>-->
-
-<!--				<tr class="second-string">-->
-<!--					<td name="test" method="get">-->
-<!--						<select class="second-string">-->
-<!--							{% for p in list_people %}-->
-<!--							<option name="{{ p.name }}">{{ p.contains }}</option>-->
-<!--							{% endfor %}-->
-<!--						</select>-->
-<!--					</td>-->
-<!--				</tr>-->
-<!--			</table>-->
-
-<!--			<table class="table">-->
-<!--				<tr class="first-string">-->
-<!--					<td class="first-white"> <div class="icon"></div>{{ title_people }}</td>-->
-<!--				</tr>-->
-
-<!--				<tr class="second-string">-->
-<!--					<td name="test" method="get">-->
-<!--						<select class="second-string">-->
-<!--							{% for p in list_people %}-->
-<!--							<option name="{{ p.name }}">{{ p.contains }}</option>-->
-<!--							{% endfor %}-->
-<!--						</select>-->
-<!--					</td>-->
-<!--				</tr>-->
-<!--			</table>-->
-
-
-
-
-
-
-<!--			{% for j in list_people %}-->
-<!--			<table class="table">-->
-<!--				<tr class="first-string">-->
-<!--					<td class="first-white"> <div class="icon"></div>{{ j.title }}</td>-->
-<!--				</tr>-->
-
-<!--				<tr class="second-string">-->
-<!--					<td>-->
-<!--						<input name={{ j.name }} type="text" placeholder={{ j.placeholder }} class="second-string">-->
-<!--					</td>-->
-<!--				</tr>-->
-<!--			</table>-->
-<!--			{% endfor %}-->
-
 
 			<button type="submit" class="button">Отправить заявку</button>
 		</form>
